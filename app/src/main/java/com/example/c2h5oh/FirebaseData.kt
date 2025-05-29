@@ -9,13 +9,8 @@ data class FirebaseData(
 
 data class Liquor(
     val name: String = "",
-    val alcohol: Double = 0.0,
     val description: String? = null,
     val image_url: String? = null,
-    val tag: Tag? = null
-)
-
-data class Tag(
     val liquor_type: String = "",
     val price_range: Int = 0,
     val sweet: Boolean = false,
@@ -25,5 +20,14 @@ data class Tag(
     val umami: Boolean = false,
     val heavy: Boolean = false,
     val sparkling: Boolean = false,
-    val alcohol_level: Int = 0
+    val alcohol_level: Int = 0,
+    val search_tokens: List<String> = emptyList()
 )
+
+fun generateSearchTokens(input: String): List<String> {
+    val tokens = mutableListOf<String>()
+    for (i in 1..input.length) {
+        tokens.add(input.substring(0, i).lowercase())
+    }
+    return tokens
+}
