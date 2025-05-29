@@ -49,10 +49,29 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun setDocument(data: FirebaseData) {
+        val liquor = Liquor(
+            name = "진로이즈백",
+            alcohol = 16.5,
+            description = "깔끔한 맛의 소주",
+            image_url = "https://example.com/jinro.jpg",
+            tag = Tag(
+                liquor_type = "소주",
+                price_range = 50,
+                sweet = true,
+                sour = true,
+                astringent = false,
+                bitter = true,
+                umami = true,
+                heavy = true,
+                sparkling = false,
+                alcohol_level = 16
+            )
+        )
+
         FirebaseFirestore.getInstance()
-            .collection("sampleCollection")
-            .document(data.sampleName)
-            .set(data)
+            .collection("liquors")
+            .add(liquor)
+
             .addOnSuccessListener {
                 binding.textResult.text = "Success"
             }
