@@ -8,62 +8,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Result TextView at the top -->
-    <TextView
-        android:id="@+id/text_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result will appear here"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_search"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- EditText for search input -->
-    <EditText
-        android:id="@+id/text_search"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter search keyword"
-        app:layout_constraintTop_toBottomOf="@id/text_result"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="16dp" />
-
-    <!-- Search button -->
-    <Button
-        android:id="@+id/button_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
-        app:layout_constraintTop_toBottomOf="@id/text_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
-
-    <!-- Get Data button -->
-    <Button
-        android:id="@+id/button_get_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Data"
-        app:layout_constraintTop_toBottomOf="@id/button_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
-
-    <!-- Set button -->
-    <Button
-        android:id="@+id/button_set"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set"
-        app:layout_constraintTop_toBottomOf="@id/button_get_data"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
