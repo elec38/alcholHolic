@@ -1,3 +1,4 @@
+//1번 화면(태그로 술 추천받는 화면)
 package com.example.c2h5oh.screens
 
 import androidx.compose.foundation.clickable

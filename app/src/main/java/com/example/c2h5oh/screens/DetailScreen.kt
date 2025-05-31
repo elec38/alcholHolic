@@ -1,3 +1,4 @@
+//1번(태그로 술 추천) 화면에서 추천 버튼 클릭 시 나오는 술 이미지+정보 화면
 package com.example.c2h5oh.screens
 
 import androidx.compose.foundation.layout.Column

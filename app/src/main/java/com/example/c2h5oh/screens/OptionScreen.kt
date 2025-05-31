@@ -1,3 +1,4 @@
+//1,2번 옵션 선택하는 화면
 package com.example.c2h5oh.screens
 
 

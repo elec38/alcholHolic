@@ -1,10 +1,12 @@
 package com.example.c2h5oh.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
+
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -20,15 +22,19 @@ private val LightColorPalette = lightColors(
 
 @Composable
 fun C2h5ohTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    useDarkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) DarkColorPalette else LightColorPalette
+    val colors = darkColorScheme(
+        background = Color.Black,
+        surface = Color.Black,
+        onBackground = Color.White,
+        onSurface = Color.White
+        // 추가로 primary, secondary 등도 원하면 설정 가능
+    )
 
     MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
+        colorScheme = colors,
         content = content
     )
 }

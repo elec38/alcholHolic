@@ -1,3 +1,4 @@
+//2번 화면(술 이름 검색 시 정보 알려주는 화면)
 package com.example.c2h5oh.screens
 
 import androidx.compose.foundation.layout.Arrangement
