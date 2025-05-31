@@ -21,8 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import com.example.c2h5oh.theme.C2h5ohTheme
 
-//할일  1. batch.write으로 데이터베이스 체우는 방법 코딩  2. 데이터베이스에서 꺼내오는 방법 코딩(V) 3. roomdb 바탕으로 사용자 설정 및 기록 저장 코딩
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
