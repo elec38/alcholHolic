@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "538911904130",
+    "project_id": "alcoholics-group",
+    "storage_bucket": "alcoholics-group.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538911904130:android:04c3b05cb24df057e5ff9b",
+        "android_client_info": {
+          "package_name": "com.example.c2h5oh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwxdy03Lct_7LJ8n4j7o1wTijd1VBYCxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

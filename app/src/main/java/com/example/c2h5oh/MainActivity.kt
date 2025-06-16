@@ -1,6 +1,17 @@
 package com.example.c2h5oh
 
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.c2h5oh.databinding.ActivityMainBinding
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.example.c2h5oh.FirebaseData
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.c2h5oh.screens.StartScreen
@@ -23,5 +34,40 @@ class MainActivity : ComponentActivity() {
                 }
             }// 👉 아래 Composable 함수 호출
         }
+
+    }
+
+
+
+    private fun setDocument(data: FirebaseData) {
+        val liquor = Liquor(
+            name = "jinro",
+            description = "깔끔한 맛의 소주",
+            image_url = "https://example.com/jinro.jpg",
+            liquor_type = "소주",
+            price_range = 50,
+            sweet = true,
+            sour = true,
+            astringent = false,
+            bitter = true,
+            umami = true,
+            heavy = true,
+            sparkling = false,
+            alcohol_level = 16
+        ).let {
+            it.copy(search_tokens = generateSearchTokens(it.name))
+        }
+
+        FirebaseFirestore.getInstance()
+            .collection("liquors")
+            .document("${liquor.name}")
+            .set(liquor)
+
+            .addOnSuccessListener {
+//                binding.textResult.text = "Success"
+            }
+            .addOnFailureListener {
+//                binding.textResult.text = "Failure${it.message}"
+            }
     }
 }
