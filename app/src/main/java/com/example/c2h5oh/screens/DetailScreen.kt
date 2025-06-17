@@ -149,7 +149,7 @@ fun DetailScreen(
                 contentColor = Color.White
             )
         ) {
-            Text("API로 다른 술 추천 받기")
+            Text("AI로 또다른 술 추천 받기")
         }
     }
 }

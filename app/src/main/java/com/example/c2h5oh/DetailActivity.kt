@@ -36,8 +36,11 @@ class DetailActivity : ComponentActivity() {
                     liquors = liquorList,
                     onBackClick = { activity?.finish() },
                     onApiClick = {
-                        val intent = Intent(activity, ApiResultActivity::class.java)
+                        val intent = Intent(activity, ApiResultActivity::class.java).apply {
+                            putStringArrayListExtra("selected_tags", ArrayList(selectedTags))
+                        }
                         activity?.startActivity(intent)
+
                     }
                 )
             }
