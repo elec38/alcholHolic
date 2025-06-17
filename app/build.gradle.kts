@@ -65,8 +65,11 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.navigation.compose)
-    implementation("androidx.compose.material3:material3:1.3.2")
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation(libs.androidx.material3)
+    implementation(libs.coil.compose)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
 
     debugImplementation(libs.androidx.ui.tooling)
 }

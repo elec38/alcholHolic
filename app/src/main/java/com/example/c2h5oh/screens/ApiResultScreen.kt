@@ -20,6 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.c2h5oh.data.UserInput
+import com.example.c2h5oh.data.RetrofitClient
+
 @Composable
 fun ApiResultScreen() {
     var result by remember { mutableStateOf("추천 결과를 불러오는 중...") }
@@ -44,6 +47,22 @@ fun ApiResultScreen() {
 }
 
 suspend fun fetchRecommendationFromApi(): String {
-    delay(1000) // 예: 네트워크 대기 시뮬레이션
-    return "🍷 와인: 산뜻한 향의 레드와인 추천!"
+    return try {
+        val input = UserInput(
+            taste = "sweet",           // 또는 intent로 값 전달 가능
+            price = 3,
+            heavy = false,
+            sparkling = true,
+            alcohol_level = 2
+        )
+
+        val response = RetrofitClient.apiService.recommend(input).execute()
+        if (response.isSuccessful) {
+            response.body()?.recommendation ?: "추천 결과가 비어있습니다."
+        } else {
+            "서버 오류: ${response.code()}"
+        }
+    } catch (e: Exception) {
+        "API 호출 실패: ${e.message}"
+    }
 }

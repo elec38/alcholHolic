@@ -25,3 +25,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "C2H5OH"
 include(":app")
+include(":lib")
