@@ -1,25 +1,15 @@
 package com.example.c2h5oh
 
-import android.nfc.Tag
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.c2h5oh.databinding.ActivityMainBinding
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.firestore
-import com.example.c2h5oh.FirebaseData
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.c2h5oh.screens.StartScreen
-import androidx.compose.material.Surface
-import androidx.compose.ui.Modifier
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Surface
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Modifier
+import com.example.c2h5oh.screens.StartScreen
 import com.example.c2h5oh.theme.C2h5ohTheme
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
