@@ -32,7 +32,13 @@ class DetailActivity : ComponentActivity() {
                     liquorList = result
                 }
                 DetailScreen(
-                    tags = selectedTags,                    
+                    tags = selectedTags,
+                    onBackClick = { activity?.finish() },
+                    onApiClick = {
+                        val intent = Intent(activity, ApiResultActivity::class.java)
+                        activity?.startActivity(intent)
+                    }
+                    tags = selectedTags,
                     liquors = liquorList,
                     onBackClick = { activity?.finish() }
                 )

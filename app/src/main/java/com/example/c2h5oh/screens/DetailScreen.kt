@@ -3,6 +3,7 @@ package com.example.c2h5oh.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,6 +22,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,7 +45,34 @@ fun DetailScreen(
     tags: List<String>,
     liquors: List<Liquor>,
     onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onApiClick: () -> Unit
 ) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = { onBackClick() }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "뒤로가기",
+                        tint = Color.White
+                    )
+                }
+            }
     val scrollState = rememberScrollState()
 
     Column(
@@ -113,6 +144,39 @@ fun DetailScreen(
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                text = "🍶 추천 술 리스트",
+                fontSize = 45.sp,
+                color = Color(0xFFFFCBDD),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+            )
+
+            Spacer(modifier = Modifier.height(90.dp))
+
+            tags.forEach { tag ->
+                Text(
+                    text = "$tag 같은 술",
+                    fontSize = 28.sp,
+                    color = Color.White
+                )
+            }
+        }
+
+        Button(
+            onClick = onApiClick,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF9C6EFF),
+                contentColor = Color.White
+            )
+        ) {
+            Text("API로 다른 술 추천 받기")
         }
     }
 }
