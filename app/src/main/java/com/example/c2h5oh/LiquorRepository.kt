@@ -12,8 +12,11 @@ suspend fun fetchLiquorsByTags(tags: List<String>): List<Liquor> {
         for (doc in snapshot.documents) {
             val liquor = doc.toObject(Liquor::class.java) ?: continue
 
-            // 조건: 태그(예: "sweet", "heavy", "~10%")가 Liquor 필드에 부합하는지 검사
-            val matches = tags.all { tag ->
+            // 태그 분리
+            val flavorTags = tags.filterNot { it.contains("%") }
+            val alcoholTags = tags.filter { it.contains("%") }
+
+            val flavorMatch = flavorTags.all { tag ->
                 when (tag) {
                     "달콤한" -> liquor.sweet
                     "상큼한" -> liquor.sour
@@ -22,6 +25,12 @@ suspend fun fetchLiquorsByTags(tags: List<String>): List<Liquor> {
                     "감칠맛이 나는" -> liquor.umami
                     "무거운" -> liquor.heavy
                     "청량한" -> liquor.sparkling
+                    else -> true
+                }
+            }
+
+            val alcoholMatch = if (alcoholTags.isEmpty()) true else alcoholTags.any { tag ->
+                when (tag) {
                     "~10%" -> liquor.alcohol_level <= 10
                     "10~20%" -> liquor.alcohol_level in 11..20
                     "20~30%" -> liquor.alcohol_level in 21..30
@@ -30,7 +39,7 @@ suspend fun fetchLiquorsByTags(tags: List<String>): List<Liquor> {
                 }
             }
 
-            if (matches) {
+            if (flavorMatch && alcoholMatch) {
                 liquors.add(liquor)
             }
         }
