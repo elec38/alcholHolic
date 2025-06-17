@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedTextField
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,11 +40,11 @@ fun SecondOptionScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "술 이름으로 검색하기",
-            fontSize = 24.sp,
+            fontSize = 35.sp,
             color = Color(0xFFC0B0FD)
             )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(150.dp))
 
         var query by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -53,9 +55,22 @@ fun SecondOptionScreen() {
                 Text(
                     text = "술 이름을 입력하세요",
                     fontSize = 10.sp,
-                    color = Color.Gray // 여기에서 글자색만 지정
+                    color = Color.LightGray // 여기에서 글자색만 지정
                 )
-            }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.White,             // 입력 중 텍스트 색
+                unfocusedTextColor = Color.White,           // 포커스 해제 시 텍스트 색
+                focusedBorderColor = Color(0xFFFFA6D1),     // 포커스 상태 테두리
+                unfocusedBorderColor = Color(0xFFF5C7DA),   // 비포커스 테두리
+                cursorColor = Color.White,                  // 커서 색
+                focusedLabelColor = Color(0xFFC0B0FD),
+                unfocusedLabelColor = Color.Gray,
+                focusedContainerColor = Color.Black,     // 배경색
+                unfocusedContainerColor = Color.Black
+            )
+
         )
 
         Spacer(modifier = Modifier.height(30.dp))

@@ -50,7 +50,8 @@ fun DetailScreen(
         Text(
             text = "선택한 태그",
             fontSize = 40.sp,
-            color = Color.White
+            color = Color(0xFFC0B0FD),
+
         )
 
         Spacer(modifier = Modifier.height(24.dp))

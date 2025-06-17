@@ -46,7 +46,10 @@ fun FirstOptionScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("태그 선택", color = Color.White) },
+                title = { Text("태그 선택",
+                    fontSize = 40.sp,
+                    color = Color(0xFFC0B0FD)
+                )},
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
