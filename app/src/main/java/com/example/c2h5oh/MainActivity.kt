@@ -9,7 +9,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import com.example.c2h5oh.screens.StartScreen
 import com.example.c2h5oh.theme.C2h5ohTheme
-import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,39 +24,5 @@ class MainActivity : ComponentActivity() {
             }// 👉 아래 Composable 함수 호출
         }
 
-    }
-
-
-
-    private fun setDocument(data: FirebaseData) {
-        val liquor = Liquor(
-            name = "jinro",
-            description = "깔끔한 맛의 소주",
-            image_url = "https://example.com/jinro.jpg",
-            liquor_type = "소주",
-            price_range = 50,
-            sweet = true,
-            sour = true,
-            astringent = false,
-            bitter = true,
-            umami = true,
-            heavy = true,
-            sparkling = false,
-            alcohol_level = 16
-        ).let {
-            it.copy(search_tokens = generateSearchTokens(it.name))
-        }
-
-        FirebaseFirestore.getInstance()
-            .collection("liquors")
-            .document("${liquor.name}")
-            .set(liquor)
-
-            .addOnSuccessListener {
-//                binding.textResult.text = "Success"
-            }
-            .addOnFailureListener {
-//                binding.textResult.text = "Failure${it.message}"
-            }
     }
 }
