@@ -44,7 +44,6 @@ import coil.compose.AsyncImage
 fun DetailScreen(
     tags: List<String>,
     liquors: List<Liquor>,
-    onBackClick: () -> Unit
     onBackClick: () -> Unit,
     onApiClick: () -> Unit
 ) {
