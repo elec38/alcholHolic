@@ -63,7 +63,7 @@ fun DetailScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         // 최대 3개만 보여주기
-        liquors.take(3).forEach { liquor ->
+        liquors.take(8).forEach { liquor ->
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -107,7 +107,7 @@ fun DetailScreen(
                                 text = it,
                                 fontSize = 12.sp,
                                 color = Color.Gray,
-                                maxLines = 2
+//                                maxLines = 2
                             )
                         }
                     }
