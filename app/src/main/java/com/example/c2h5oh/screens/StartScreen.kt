@@ -35,7 +35,7 @@ fun StartScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
+        Text(//텍스트 설정
             text = "WELCOME",
             fontSize = 50.sp,
             fontWeight = FontWeight.Bold,
@@ -56,9 +56,9 @@ fun StartScreen() {
             fontFamily = FontFamily.Cursive
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(24.dp))//한 줄 뛰기
 
-        Button(
+        Button(//시작 버튼
             onClick = { context.startActivity(Intent(context, OptionActivity::class.java)) },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFFA3BD), // 버튼 배경
