@@ -135,16 +135,6 @@ fun DetailScreen(
             }
 
 
-            Spacer(modifier = Modifier.height(90.dp))
-
-            tags.forEach { tag ->
-                Text(
-                    text = "$tag 같은 술",
-                    fontSize = 18.sp,
-                    color = Color.White
-                )
-            }
-
             Spacer(modifier = Modifier.height(50.dp)) // 버튼 위 공간 확보
         }
 
