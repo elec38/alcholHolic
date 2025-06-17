@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -57,13 +59,12 @@ fun SecondOptionScreen() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "술 이름으로 검색하기",
-            fontSize = 24.sp,
+        Text(text = "술 이름으로 검색하기",
+            fontSize = 35.sp,
             color = Color(0xFFC0B0FD)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(150.dp))
 
         OutlinedTextField(
             value = query,
@@ -72,9 +73,22 @@ fun SecondOptionScreen() {
                 Text(
                     text = "술 이름을 입력하세요",
                     fontSize = 10.sp,
-                    color = Color.Gray
+                    color = Color.LightGray // 여기에서 글자색만 지정
                 )
-            }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.White,             // 입력 중 텍스트 색
+                unfocusedTextColor = Color.White,           // 포커스 해제 시 텍스트 색
+                focusedBorderColor = Color(0xFFFFA6D1),     // 포커스 상태 테두리
+                unfocusedBorderColor = Color(0xFFF5C7DA),   // 비포커스 테두리
+                cursorColor = Color.White,                  // 커서 색
+                focusedLabelColor = Color(0xFFC0B0FD),
+                unfocusedLabelColor = Color.Gray,
+                focusedContainerColor = Color.Black,     // 배경색
+                unfocusedContainerColor = Color.Black
+            )
+
         )
 
         Spacer(modifier = Modifier.height(30.dp))
