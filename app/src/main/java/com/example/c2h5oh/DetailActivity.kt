@@ -2,16 +2,16 @@ package com.example.c2h5oh
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.platform.LocalContext
 import com.example.c2h5oh.screens.DetailScreen
 import com.example.c2h5oh.theme.C2h5ohTheme
 
@@ -33,14 +33,12 @@ class DetailActivity : ComponentActivity() {
                 }
                 DetailScreen(
                     tags = selectedTags,
+                    liquors = liquorList,
                     onBackClick = { activity?.finish() },
                     onApiClick = {
                         val intent = Intent(activity, ApiResultActivity::class.java)
                         activity?.startActivity(intent)
                     }
-                    tags = selectedTags,
-                    liquors = liquorList,
-                    onBackClick = { activity?.finish() }
                 )
             }
         }

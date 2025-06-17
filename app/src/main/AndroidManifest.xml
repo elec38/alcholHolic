@@ -25,6 +25,7 @@
         <activity android:name=".FirstOptionActivity"/>
         <activity android:name=".DetailActivity"/>
         <activity android:name=".SecondOptionActivity"/>
+        <activity android:name=".ApiResultActivity" />
 
     </application>
 

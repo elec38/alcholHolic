@@ -1,5 +1,4 @@
 
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 
 plugins {
     alias(libs.plugins.android.application)
@@ -65,8 +64,8 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.navigation.compose)
-    implementation("androidx.compose.material3:material3:1.3.2")
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation(libs.androidx.material3)
+    implementation(libs.coil.compose)
 
     debugImplementation(libs.androidx.ui.tooling)
 }
