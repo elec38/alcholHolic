@@ -39,7 +39,7 @@ fun FirstOptionScreen(
     onBackClick: () -> Unit,
     onRecommendClick: (List<String>) -> Unit
 ) {
-    val tags = listOf("달콤한", "상큼한", "쓴맛", "기분 전환", "편안한", "청량한")
+    val tags = listOf("달콤한", "상큼한", "떫은", "쓴", "감칠맛이 나는", "무거운", "청량한", "~10%", "10~20%", "20~30%", "30%~")
     val selectedTags = remember { mutableStateListOf<String>() }
     val scrollState = rememberScrollState()
 
@@ -68,7 +68,7 @@ fun FirstOptionScreen(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(16.dp)
+                .padding(14.dp)
                 .verticalScroll(scrollState)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Top,
@@ -83,7 +83,7 @@ fun FirstOptionScreen(
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 4.dp)
+                        .padding(vertical = 2.dp)
                         .clickable {
                             if (selectedTags.contains(tag)) {
                                 selectedTags.remove(tag)
@@ -100,7 +100,7 @@ fun FirstOptionScreen(
                 ) {
                     Text(
                         text = tag,
-                        modifier = Modifier.padding(16.dp),
+                        modifier = Modifier.padding(10.dp),
                         fontSize = 18.sp,
                         color = Color.White
                     )
