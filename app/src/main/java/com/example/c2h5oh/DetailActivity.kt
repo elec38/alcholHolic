@@ -2,6 +2,7 @@ package com.example.c2h5oh
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,7 +22,11 @@ class DetailActivity : ComponentActivity() {
             C2h5ohTheme {
                 DetailScreen(
                     tags = selectedTags,
-                    onBackClick = { activity?.finish() }
+                    onBackClick = { activity?.finish() },
+                    onApiClick = {
+                        val intent = Intent(activity, ApiResultActivity::class.java)
+                        activity?.startActivity(intent)
+                    }
                 )
             }
         }

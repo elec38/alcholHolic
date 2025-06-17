@@ -4,13 +4,18 @@ package com.example.c2h5oh.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -27,8 +32,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SecondOptionScreen() {
-    var query by remember { mutableStateOf("") }
+fun SecondOptionScreen(
+    onBackClick: () -> Unit // 🔥 뒤로가기 콜백 받기
+) {
+    var query by remember { mutableStateOf(TextFieldValue("")) }
     var result by remember { mutableStateOf("") }
 
     Column(
@@ -39,14 +46,29 @@ fun SecondOptionScreen() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "술 이름으로 검색하기",
+        // 🔙 뒤로가기 버튼 (좌측 상단)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = { onBackClick() }) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "뒤로가기",
+                    tint = Color.White
+                )
+            }
+        }
+
+        Text(
+            text = "술 이름으로 검색하기",
             fontSize = 35.sp,
             color = Color(0xFFC0B0FD)
-            )
+        )
 
         Spacer(modifier = Modifier.height(150.dp))
-
-        var query by remember { mutableStateOf(TextFieldValue("")) }
 
         OutlinedTextField(
             value = query,
@@ -54,38 +76,37 @@ fun SecondOptionScreen() {
             label = {
                 Text(
                     text = "술 이름을 입력하세요",
-                    fontSize = 10.sp,
-                    color = Color.LightGray // 여기에서 글자색만 지정
+                    fontSize = 18.sp,
+                    color = Color.LightGray
                 )
             },
             modifier = Modifier.fillMaxWidth(),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.White,             // 입력 중 텍스트 색
-                unfocusedTextColor = Color.White,           // 포커스 해제 시 텍스트 색
-                focusedBorderColor = Color(0xFFFFA6D1),     // 포커스 상태 테두리
-                unfocusedBorderColor = Color(0xFFF5C7DA),   // 비포커스 테두리
-                cursorColor = Color.White,                  // 커서 색
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                focusedBorderColor = Color(0xFFFFA6D1),
+                unfocusedBorderColor = Color(0xFFF5C7DA),
+                cursorColor = Color.White,
                 focusedLabelColor = Color(0xFFC0B0FD),
                 unfocusedLabelColor = Color.Gray,
-                focusedContainerColor = Color.Black,     // 배경색
+                focusedContainerColor = Color.Black,
                 unfocusedContainerColor = Color.Black
             )
-
         )
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Button(onClick = {
-            // 임시 결과
-                result = when(query.text.trim().lowercase()) {
+        Button(
+            onClick = {
+                result = when (query.text.trim().lowercase()) {
                     "소주" -> "소주: 한국의 대표적인 증류주입니다."
                     "맥주" -> "맥주: 보리를 발효시켜 만든 시원한 술입니다."
                     else -> "검색 결과가 없습니다."
                 }
             },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFBEAFFB),  // 버튼 내부 배경색
-                contentColor = Color.White            // 버튼 안 글자색
+                containerColor = Color(0xFFBEAFFB),
+                contentColor = Color.White
             )
         ) {
             Text("검색")
