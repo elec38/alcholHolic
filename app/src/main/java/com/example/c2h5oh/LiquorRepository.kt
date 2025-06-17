@@ -41,3 +41,19 @@ suspend fun fetchLiquorsByTags(tags: List<String>): List<Liquor> {
 
     return liquors
 }
+
+
+suspend fun fetchLiquorByName(name: String): Liquor? {
+    val db = FirebaseFirestore.getInstance()
+    return try {
+        val snapshot = db.collection("liquors")
+            .whereEqualTo("name", name)
+            .get()
+            .await()
+
+        snapshot.documents.firstOrNull()?.toObject(Liquor::class.java)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
