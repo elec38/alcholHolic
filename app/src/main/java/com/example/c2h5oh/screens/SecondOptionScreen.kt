@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Card
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -30,6 +31,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+//import androidx.compose.ui.text.input.TextFieldValue
+import com.example.c2h5oh.Liquor
+import com.example.c2h5oh.fetchLiquorByName
+import kotlinx.coroutines.launch
+
 
 @Composable
 fun SecondOptionScreen(
@@ -37,6 +44,9 @@ fun SecondOptionScreen(
 ) {
     var query by remember { mutableStateOf(TextFieldValue("")) }
     var result by remember { mutableStateOf("") }
+    var liquorResult by remember { mutableStateOf<Liquor?>(null) }
+
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -98,10 +108,16 @@ fun SecondOptionScreen(
 
         Button(
             onClick = {
-                result = when (query.text.trim().lowercase()) {
-                    "소주" -> "소주: 한국의 대표적인 증류주입니다."
-                    "맥주" -> "맥주: 보리를 발효시켜 만든 시원한 술입니다."
-                    else -> "검색 결과가 없습니다."
+                scope.launch {
+                    val name = query.text.trim()
+                    val liquor = fetchLiquorByName(name)
+                    if (liquor != null) {
+                        liquorResult = liquor
+                        result = "" // 텍스트 결과는 비움
+                    } else {
+                        liquorResult = null
+                        result = "검색 결과가 없습니다."
+                    }
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -114,7 +130,57 @@ fun SecondOptionScreen(
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Text(
+                liquorResult?.let { liquor ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.DarkGray)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(12.dp)
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    AsyncImage(
+                        model = liquor.image_url,
+                        contentDescription = liquor.name,
+                        modifier = Modifier
+                            .size(64.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .border(1.dp, Color.White, RoundedCornerShape(8.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Column {
+                        Text(
+                            text = liquor.name,
+                            fontSize = 18.sp,
+                            color = Color.White,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = "${liquor.alcohol_level}% alcohol",
+                            fontSize = 14.sp,
+                            color = Color.LightGray
+                        )
+                        liquor.description?.let {
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = it,
+                                fontSize = 12.sp,
+                                color = Color.Gray,
+                                maxLines = 2
+                            )
+                        }
+                    }
+                }
+            }
+        } ?: Text(
             text = result,
             fontSize = 28.sp,
             color = Color(0xFFFFD8EB)
